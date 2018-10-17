@@ -9,18 +9,19 @@ import (
 )
 
 func main() {
+  var numbers []float64
   fmt.Println("Enter comma separated number to get average:")
   reader := bufio.NewReader(os.Stdin)
   input, _ := reader.ReadString('\n')
 
   inputMap := strings.Split(input, ",")
-  var numbers []float64
-  for _, n := range inputMap {
-    number, _ := strconv.ParseFloat(n, 64)
+
+  for _, i := range inputMap {
+    cleanedString := strings.TrimSpace(i)
+    number, _ := strconv.ParseFloat(cleanedString, 64)
     numbers = append(numbers, number)
   }
 
-  // numbers := []float64{2, 4, 5.5, 19}
   avg := average(numbers)
 
   fmt.Println("Numbers", numbers)
